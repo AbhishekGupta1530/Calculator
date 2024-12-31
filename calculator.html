@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color:white;
+            margin: 0;
+        }
+
+        .calculator {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 3px 3px 3px 3px;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        #display {
+            width: 100%;
+            height: 50px;
+            font-size: 28px;
+            text-align: right;
+            border: 2px solid red;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            background-color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        input[type="button"] {
+            width: 100%;
+            height: 50px;
+            font-size: 24px;
+            border: none;
+            border-radius: 10px;
+            background-color: #e6e217;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: black;
+        }
+
+        input[type="button"]:hover {
+            background-color: #d0d0d0d7;
+        }
+        #equation{
+            width:100%;
+            padding:10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <table>
+            <tr>
+                <th colspan="4">
+                    <input type="text" id="equation" placeholder="calculate your result"  disabled>
+                </th>
+            </tr>
+            <tr>
+                <td><input type="button" class="in" value="7"></td>
+                <td><input type="button" class="in"  value="8"></td>
+                <td><input type="button" class="in"  value="9"></td>
+                <td><input type="button" class="in"  value="/"></td>
+            </tr>
+            <tr>
+                <td><input type="button" class="in"  value="4"></td>
+                <td><input type="button" class="in"  value="5"></td>
+                <td><input type="button" class="in"  value="6"></td>
+                <td><input type="button" class="in"  value="*"></td>
+            </tr>
+            <tr>
+                <td><input type="button" class="in"  value="1"></td>
+                <td><input type="button" class="in"  value="2"></td>
+                <td><input type="button" class="in"  value="3"></td>
+                <td><input type="button" class="in"  value="-"></td>
+            </tr>
+            <tr>
+                <td><input type="button" class="in"  value="0"></td>
+                <td><input type="button" class="in"  value="."></td>
+                <td><input type="button" id="solve"  value="="></td>
+                <td><input type="button" class="in"  value="+"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="button" id="clear" value="C" style="width: 100%;"></td>
+                <td colspan="2"><input type="button"  value="AC" style="width: 100%;"></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        let inputs = document.querySelectorAll("input.in");
+        let eq = document.getElementById("equation");
+        console.log(inputs);
+
+        inputs.forEach((myinput)=>{
+            myinput.addEventListener("click",function(){
+                eq.value += myinput.value
+            })
+        })
+
+
+        let solve = document.getElementById("solve");
+        
+        solve.addEventListener("click",function(){
+            eq.value = eval(eq.value);
+        })
+
+        let allclearbtn = document.querySelector("[value = 'AC']");
+        allclearbtn.addEventListener("click",function(){
+            eq.value = "";
+        })
+
+        let clear = document.querySelector("#clear");
+        clear.addEventListener("click",function(){
+            eq.value = eq.value.slice(0,-1);
+        })
+
+
+    </script>
+</body>
+</html>
